@@ -25,44 +25,6 @@ def isMatrix(m):
         return False  # input is not matrixes
     return True
 
-def isDominantMatrix(matrix):
-    """
-    Returns True if matrix has dominant diagonal, False otherwise
-    :param matrix: matrix to check
-    :return: True if matrix has dominant diagonal, False otherwise
-    """
-    if not isMatrix(matrix):
-        return False
-    i = 0
-    while i < len(matrix):
-        j = 0
-        dominantElement = abs(matrix[i][i])
-        sumOfElements = 0
-        while j < len(matrix):
-            if i!=j:
-                sumOfElements += abs(matrix[i][j])
-                if sumOfElements > dominantElement:
-                    return False
-            j += 1
-        i += 1
-    return True
-def isDominantRow(row,index):
-    """
-    Returns True if element at index in row is dominant, False otherwise
-    :param row: row to check
-    :param index: index of element in row
-    :return: True if element at index in row is dominant, False otherwise
-    """
-    i = 0
-    dominantElement = abs(row[index])
-    sumOfElements = 0
-    while i < len(row):
-        if i != index:
-            sumOfElements += abs(row[i])
-            if sumOfElements > dominantElement:
-                return False
-        i += 1
-    return True
 
 def makeDominantMatrix(matrix,resvec):
     """
