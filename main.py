@@ -64,38 +64,6 @@ def isDominantRow(row,index):
         i += 1
     return True
 
-def makeDominantMatrix(matrix,resvec):
-    """
-    Tryes to make dominant matrix by swapping lines, returns the dominant matrix and vector, if success, if not success return 2 empty lists
-    :param matrix: matrix to make dominant
-    :param resvec: solution vector of matrix
-    :return: the dominant matrix and vector, if success, if not success return 2 empty lists
-    """
-    matrix = matrix.copy()
-    resvec = resvec.copy()
-    i = 0
-    while i < len(matrix):
-        if not isDominantRow(matrix[i],i):
-            j = 0
-            flag = 0
-            while j < len(matrix):
-                if isDominantRow(matrix[j],i):
-                    temp = matrix[j].copy()
-                    matrix[j] = matrix[i].copy()
-                    matrix[i] = temp
-                    temp = resvec[j]
-                    resvec[j] = resvec[i]
-                    resvec[i] = temp
-                    flag = 1
-                    break
-                j += 1
-            if flag == 0:
-                return [],[] #can't make dominant matrix
-        i += 1
-    if not isDominantMatrix(matrix):
-        return [],[]
-    return matrix,resvec
-
 def buildIterationMatrix(matrix,resvec):
     """
     Returns iteration matrix built from matrix and vector resvec
@@ -136,6 +104,40 @@ def buildIterationMatrix(matrix,resvec):
             j += 1
         i += 1
     return iterationMat
+
+def makeDominantMatrix(matrix,resvec):
+    """
+    Tryes to make dominant matrix by swapping lines, returns the dominant matrix and vector, if success, if not success return 2 empty lists
+    :param matrix: matrix to make dominant
+    :param resvec: solution vector of matrix
+    :return: the dominant matrix and vector, if success, if not success return 2 empty lists
+    """
+    matrix = matrix.copy()
+    resvec = resvec.copy()
+    i = 0
+    while i < len(matrix):
+        if not isDominantRow(matrix[i],i):
+            j = 0
+            flag = 0
+            while j < len(matrix):
+                if isDominantRow(matrix[j],i):
+                    temp = matrix[j].copy()
+                    matrix[j] = matrix[i].copy()
+                    matrix[i] = temp
+                    temp = resvec[j]
+                    resvec[j] = resvec[i]
+                    resvec[i] = temp
+                    flag = 1
+                    break
+                j += 1
+            if flag == 0:
+                return [],[] #can't make dominant matrix
+        i += 1
+    if not isDominantMatrix(matrix):
+        return [],[]
+    return matrix,resvec
+
+
 
 def solutionOfMatrixByYacobi(matrix, resvec):
     """
