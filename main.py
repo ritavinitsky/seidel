@@ -64,46 +64,7 @@ def isDominantRow(row,index):
         i += 1
     return True
 
-def buildIterationMatrix(matrix,resvec):
-    """
-    Returns iteration matrix built from matrix and vector resvec
-    :param matrix: matrix from which to build iteration matrix
-    :param resvec: vector from which to build iteration matrix
-    :return: iteration matrix built from matrix and vector resvec
-    """
-    matrix = matrix.copy()
-    resvec = resvec.copy()
-    i = 0
-    iterationMat = []
-    while i < len(matrix):
-        if matrix[i][i] == 0:
-            s = i + 1
-            flag = 0
-            while s < len(matrix):
-                if matrix[s][i] != 0:
-                    # swap lines
-                    temp = matrix[s].copy()
-                    matrix[s] = matrix[i].copy()
-                    matrix[i] = temp
-                    flag = 1
-                    temp = resvec[s]
-                    resvec[s] = resvec[i]
-                    resvec[i] = temp
-                    break
-                s += 1
-            if flag == 0:
-                return []  # can't build iterationMatrix
-        iterationMat.append([])
-        iterationMat[i].append(resvec[i] / matrix[i][i])
-        j = 0
-        while j < len(matrix):
-            if i != j:
-                iterationMat[i].append(-matrix[i][j] / matrix[i][i])
-            else:
-                iterationMat[i].append(0)
-            j += 1
-        i += 1
-    return iterationMat
+
 
 def makeDominantMatrix(matrix,resvec):
     """
